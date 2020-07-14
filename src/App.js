@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ScoreBoard from './ScoreBoard'
 import BottomRow from "./BottomRow";
+import Button from './Button'
 import "./App.css";
 
 
@@ -17,26 +18,28 @@ function App() {
       <section className="scoreboard">
         <div className="topRow">
           <ScoreBoard team='home' name='Lions' score={LionsScore} />
+          <Timer className='timer'/>
           <ScoreBoard team='away' name='Tigers' score={TigerScore} />
         </div>
         <BottomRow />
       </section>
       <section className="buttons">
         <div className="homeButtons">
-
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown" onClick={()=>setLScore(LionsScore + 7)}>Home Touchdown</button>
-          <button className="homeButtons__fieldGoal" onClick={()=>setLScore(LionsScore + 3)}>Home Field Goal</button>
+          <Button className="homeButtons__touchdown" action={() => setLScore(LionsScore + 7)} text= 'Home Touchdown'/>
+          <Button className="homeButtons__fieldGoal" action={() => setLScore(LionsScore + 3)} text= 'Home Field Goal'/>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={()=>setTScore(TigerScore +7)}>Away Touchdown</button>
-          <button className="awayButtons__fieldGoal" onClick={()=>setTScore(TigerScore + 3)}>Away Field Goal</button>
+          <Button className="awayButtons__touchdown" action={() => setTScore(TigerScore + 7)} text= 'Away Touchdown'/>
+          <Button className="awayButtons__fieldGoal" action={() => setTScore(TigerScore + 3)} text= 'Away Field Goal'/>
         </div>
       </section>
     </div>
   );
 }
 
+const Timer = (props) => {
+  return <div className={props.className}>00:03</div>
+}
 
 
 
